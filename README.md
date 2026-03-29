@@ -39,5 +39,8 @@
 2. Встановіть бібліотеки: `pip install -r requirements.txt`.
 3. Відкрийте ноутбук `Mid_term_Project.ipynb`.
 
-![SHAP Interpretation](SHAP_Summary_Plot.png) 
+### 🔍 Інтерпретація моделі (SHAP)
+![SHAP Interpretation](SHAP_Summary_Plot.png)
+
+### 📈 Матриця помилок (Confusion Matrix)
 ![Confusion Matrix](Confusion_Matrix.png)
