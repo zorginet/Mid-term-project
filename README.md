@@ -38,3 +38,6 @@
 1. Клонуйте репозиторій.
 2. Встановіть бібліотеки: `pip install -r requirements.txt`.
 3. Відкрийте ноутбук `Mid_term_Project.ipynb`.
+
+![SHAP Interpretation](SHAP Summary Plot.png)
+![SHAP Interpretation](Confusion Matrix.png)
