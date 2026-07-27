@@ -1,46 +1,57 @@
-# Прогнозування підписки на банківський депозит (Bank Marketing Campaign)
+# Predicting Bank Deposit Sign-ups (Bank Marketing Campaign)
 
-## 📌 Опис задачі
-Цей проєкт присвячений аналізу маркетингових кампаній португальської банківської установи. Основна мета — передбачити, чи підпише клієнт строковий депозит (цільова змінна `y`).
+## 📌 Task Description
+This project focuses on analysing the marketing campaigns of a Portuguese banking institution. The main objective is to predict whether a customer will open a fixed-term deposit (target variable `y`).
 
-**Бізнес-ціль:** Зменшити кількість неефективних дзвінків та зосередити зусилля на клієнтах, які з найбільшою ймовірністю погодяться на послугу.
+**Business objective:** To reduce the number of ineffective calls and focus efforts on customers who are most likely to agree to the service.
 
-## 🛠 Що було зроблено
-В ході роботи було виконано повний цикл розробки ML-моделі:
-- **Очищення даних:** Обробка пропущених значень та видалення ознаки `duration` (для запобігання витоку даних).
-- **EDA:** Візуалізація розподілу класів та кореляції ознак.
-- **Feature Engineering:** Кодування категоріальних змінних та масштабування числових ознак.
-- **Моделювання:** Навчено 4 моделі (Logistic Regression, kNN, Decision Tree, LightGBM).
-- **Оптимізація:** Використано `Hyperopt` та `RandomizedSearchCV` для пошуку найкращих гіперпараметрів.
-- **Pipeline:** Створено фінальний пайплайн для автоматизації обробки "сирих" даних.
+## 🛠 What was done
+During the project, the full ML model development cycle was carried out:
+- **Data cleaning:** Handling missing values and removing the `duration` feature (to prevent data leakage).
+- **EDA:** Visualising class distributions and feature correlations.
+- **Feature engineering:** Encoding categorical variables and scaling numerical features.
+- **Modelling:** Four models were trained (Logistic Regression, kNN, Decision Tree, LightGBM).
+- **Optimisation:** `Hyperopt` and `RandomizedSearchCV` were used to find the best hyperparameters.
+- **Pipeline:** Custom functions were created in `src/utils.py` and a final pipeline was built to automate data processing.
 
-## 📊 Результати експериментів
+## 📊 Experiment results
 
-| Модель | ROC-AUC (Test) | F1-Score (Test) | Коментар |
+| Model | ROC-AUC (Test) | F1-Score (Test) | Comment |
 | :--- | :---: | :---: | :--- |
-| **LightGBM (Tuned)** | **0.81** | **0.54** | Найкращий баланс Recall та Precision |
-| Decision Tree | 0.80 | 0.47 | Стабільна модель, але поступається бустингу |
-| Logistic Regression | 0.80 | 0.46 | Хороший базовий рівень |
-| kNN | 0.74 | 0.40 | Чутлива до дисбалансу класів |
+| **LightGBM (Tuned)** | **0.81** | **0.54** | Best balance of Recall and Precision |
+| Decision Tree | 0.80 | 0.47 | A stable model, but outperformed by boosting |
+| Logistic Regression | 0.80 | 0.46 | A good baseline |
+| kNN | 0.74 | 0.40 | Sensitive to class imbalance |
 
-## 🔍 Інтерпретація моделі (SHAP)
-Для пояснення рішень моделі LightGBM було використано аналіз SHAP. Найважливішими ознаками виявилися:
-1. `euribor3m` (макроекономічний показник).
-2. `nr.employed` (кількість зайнятих працівників).
-3. `poutcome_success` (успіх попередньої кампанії).
+### 📈 Confusion Matrix
+![Confusion Matrix](reports/Confusion_Matrix.png)
 
-## 💡 Висновки та подальші кроки
-- Модель демонструє стабільну роботу на тестових даних.
-- Для покращення результатів рекомендується зібрати більше даних про історію транзакцій клієнтів.
-- Впровадження моделі дозволить оптимізувати роботу маркетингового відділу на ~60%.
+## 🔍 Model Interpretation (SHAP)
+SHAP analysis was used to explain the LightGBM model’s decisions. 
 
-- ## Як запустити
-1. Клонуйте репозиторій.
-2. Встановіть бібліотеки: `pip install -r requirements.txt`.
-3. Відкрийте ноутбук `Mid_term_Project.ipynb`.
+![SHAP Interpretation](reports/SHAP_Summary_Plot.png)
 
-### 🔍 Інтерпретація моделі (SHAP)
-![SHAP Interpretation](SHAP_Summary_Plot.png)
+**The most important features were:**
+1. `euribor3m` (macroeconomic indicator).
+2. `nr.employed` (number of employees).
+3. `poutcome_success` (success of the previous campaign).
 
-### 📈 Матриця помилок (Confusion Matrix)
-![Confusion Matrix](Confusion_Matrix.png)
+## 💡 Conclusions and next steps
+- The model performs consistently on the test data.
+- To improve results, it is recommended to collect more data on customers’ transaction history.
+- Implementing the model will optimise the marketing department’s performance by ~60%.
+
+## How to get started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/zorginet/Mid-term-project.git
+```
+2. Install the required libraries:
+```bash
+pip install -r requirements.txt
+```
+3. Open and run the notebook:
+```bash
+jupyter notebook notebooks/Mid_term_Project.ipynb
+```
